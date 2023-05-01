@@ -7,18 +7,11 @@ def merge_sort(A,p,r):
         merge_sort(A,q+1,r)
         merge(A,p,q,r)
 
-
 def merge(A, p, q, r):
    
     L = A[p:q+1]
     R = A[q+1:r+1]
- 
-    # for i in range(0, n1):
-    #     L[i] = A[p + i-1]
- 
-    # for j in range(0, n2):
-    #     R[j] = A[q + j]
- 
+
     i = 0    
     j = 0         
     for k in range(p,r+1):
