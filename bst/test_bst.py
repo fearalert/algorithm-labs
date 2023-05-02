@@ -110,6 +110,8 @@ class BSTTestCase(unittest.TestCase):
                              1, 5, 8, 10, 30, 45, 52])
         self.assertListEqual(self.bst.preorder_walk(),
                              [10, 5, 1, 8, 52, 45, 30])
+        self.assertListEqual(self.bst.postorder_walk(),
+                             [1, 8, 5, 30, 45, 52, 10])
 
     def test_smallest(self):
         """
