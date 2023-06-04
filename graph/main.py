@@ -22,8 +22,16 @@ def get_average_deg(G):
     avg_degree = sum(dict(degrees).values()) / G.number_of_nodes()
     return avg_degree
 
+def absolute_value(num):
+    if num < 0:
+        return -num
+    return num
+
 def get_density(E, N):
-    density = (2 * E) / (N* (N - 1))
+    if absolute_value(N) > 1:
+        density = (2 * E) / (absolute_value(N)* absolute_value(N - 1))
+    else:
+        density = 0
     return density
 
 def get_clustering_coeff(G):
@@ -53,7 +61,7 @@ def get_degree_distribution(G):
     degree_count = collections.Counter(degree_sequence)
     degrees, counts = zip(*degree_count.items())
     fig, ax = plt.subplots()
-    plt.bar(degrees, counts, width=0.80, color="b")
+    plt.bar(degrees, counts, width=0.80, color="blue")
     plt.title("Degree Histogram")
     plt.ylabel("Count")
     plt.xlabel("Degree")
@@ -62,9 +70,15 @@ def get_degree_distribution(G):
     plt.show()
 
 
-#Usage Code
-url = 'D:\\algorithms-lab\\graph\\mammalia-voles-rob-trapping.edges'
-# url = 'D:\\algorithms-lab\\graph\\aves-sparrow-social.edges'
+# url = 'D:\\algorithms-lab\\graph\\aves-wildbird-network.edges'
+# url = 'D:\\algorithms-lab\\graph\\email-univ.edges'
+# url = 'D:\\algorithms-lab\\graph\\email-Eu-core.edges'
+# url = 'D:\\algorithms-lab\\graph\\mammalia-voles-rob-trapping.edges'
+# url = 'D:\\algorithms-lab\\graph\\power-bcspwr10.mtx'
+# url = 'D:\\algorithms-lab\\graph\\ia-reality.mtx'
+url = 'D:\\algorithms-lab\\graph\\3elt_dual.mtx'
+# url = 'D:\\algorithms-lab\\graph\\power-US-Grid.mtx'
+
 Graph = import_graph(url)
 E = Graph.number_of_edges()
 N = Graph.number_of_nodes()
@@ -81,7 +95,7 @@ print("Number of Nodes:", nx.number_of_nodes(Graph))
 print("Number of Edges:", nx.number_of_edges(Graph))
 print("Average Degree:", avg_degree)
 print("Density is", density)
-print("The Clustering Coefficient of the graph is", clustering_coefficient, "/n")
+print("The Clustering Coefficient of the graph is", clustering_coefficient, "\n")
 
 '''
 @inproceedings{nr-aaai15,
